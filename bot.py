@@ -46,7 +46,7 @@ def whoami(message):
 
 @bot.message_handler(commands=['info'])
 def info(message):
-    bot.reply_to(message, 'Bot di @steghold\nBased on pippibot engine')
+    bot.reply_to(message, 'Bot di @steghold\nPowered by pippibot engine')
 
 
 @bot.message_handler(commands=['ban'])
