@@ -18,11 +18,6 @@ def start(message):
     bot.reply_to(message, 'On')
 
 
-@bot.message_handler(commands=['cacca'])
-def cacca(message):
-    bot.reply_to(message, consts.DB_DSN)
-
-
 @bot.message_handler(commands=['status'])
 def status(message):
     enabled = 'on' if db.getChatStatus(message.chat.id) else 'off'
@@ -51,21 +46,16 @@ def whoami(message):
 
 @bot.message_handler(commands=['info'])
 def info(message):
-    bot.reply_to(message, 'By @davide99 & @AndreaFelipe')
-
-
-@bot.message_handler(commands=['wasabi'])
-def wasabi(message):
-    bot.send_photo(message.chat.id, 'AgADBAADvLUxG8D9OwJmOy4zQ-z9LnxCKRkABM79MKc4wySEgz4CAAEC',
-                   reply_to_message_id=message.message_id)
+    bot.reply_to(message, 'Bot di @steghold')
 
 
 @bot.message_handler(commands=['ban'])
 def ban(message):
-    if message.reply_to_message.from_user.id is not None:
-        bot.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
-    else:
-        bot.reply_to(message, "Devi citare un messaggio dell'utente da bannare")
+    pass
+    # if message.reply_to_message.from_user.id is not None:
+    #    bot.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
+    # else:
+    #    bot.reply_to(message, "Devi citare un messaggio dell'utente da bannare")
 
 
 @bot.message_handler(commands=['rate'])
@@ -87,8 +77,8 @@ def rate(message):
 
 # -----------MESSAGGI SENZA RATE------------
 
-@bot.message_handler(func=lambda message: message.text.lower().startswith('pippi dice'), content_types=['text'])
-def pippi_dice(message):
+@bot.message_handler(func=lambda message: message.text.lower().startswith('stego dice'), content_types=['text'])
+def stego_dice(message):
     bot.send_message(message.chat.id, message.text[11:])
 
 
@@ -103,94 +93,75 @@ def message_with_rate(message):
     msg = message.text.lower()
 
     if 'chi' in msg and 'sei' in msg:
-        bot.reply_to(message, 'Io sono Pippi u elettrotecnicu 👋')
+        bot.reply_to(message, 'Io sono Stego, e tu? 👋')
     elif 'man' in msg and 'ag' in msg and 'gia' in msg:
         bot.reply_to(message, 'Mannaggia a te')
-    elif 'rotto' in msg and ('cazzo' in msg or 'palle' in msg or 'coglioni' in msg):
-        bot.reply_to(message, 'Nemmeno Skyler rompeva così')
     elif 'cazz' in msg:
-        bot.reply_to(message, 'Hai tittu cazzu?')
+        bot.reply_to(message, 'Non dire cazzo')
     elif 'non hai visto niente' in msg or ('sh' in msg and 'ss' in msg):
         bot.send_document(message.chat.id, 'BQADBAADNAMAAoYeZAd25LnwZcUYdQI', reply_to_message_id=message.message_id)
-    elif 'anime' in msg:
-        bot.reply_to(message, 'Si chiamano cartoni animati giapponesi')
     elif 'scaric' in msg and ('tel' in msg or 'cel' in msg):
-        bot.reply_to(message, 'Ovvio che è scarico, è un iPhone')
+        bot.reply_to(message, 'Usa la mia energia per caricarlo')
     elif 'non so' in msg or 'non lo so' in msg or 'che ne so' in msg:
-        bot.reply_to(message, 'Chiedi a Steve Jobs 😷')
-    elif 'walt' in msg or 'heisenberg' in msg:
-        bot.reply_to(message, 'Tanto non è morto❗')
-    elif 'uomo' in msg:
-        bot.reply_to(message, 'Siniora c\'è un womo pellei')
-    elif 'zitto' in msg:
-        bot.reply_to(message, 'Si siniora')
-    elif 'wow' in msg and 'renna' in msg:
-        bot.reply_to(message, 'Wow quella renna parla! 😱')
+        if random.uniform(0, 1) > 0.5:
+            bot.reply_to(message, 'Chiedi a Satoshi Nakamoto')
+        else:
+            bot.reply_to(message, 'Chiedi a me')
+    elif 'meteorit' in msg:
+        bot.reply_to(message, 'Non mi piaccioni i meteoriti')
+    elif 'asteroid' in msg:
+        bot.reply_to(message, 'Non mi piaccioni gli asteroidi')
     elif 'buongiorno' in msg:
-        bot.reply_to(message, 'Era 😡')
-    elif 'apple' in msg:
-        bot.reply_to(message, 'Mele di merda!')
-    elif 'spacobot' in msg:
-        bot.reply_to(message, 'Spacobot di merda!')
-    elif 'euh' in msg:
-        bot.reply_to(message, 'Euh 😰')
-    elif 'fox' in msg:
-        bot.reply_to(message, 'Ring ding ding ding dingeringeding 🐺')
+        bot.reply_to(message, 'Buongiorno a te')
+    elif 'buonasera' in msg:
+        bot.reply_to(message, 'Buonasera a te')
+    elif 'bot' in msg:
+        bot.reply_to(message, 'Non sono un robot!')
     elif 'ah' in msg and 'ha' in msg:
-        bot.reply_to(message, 'Cazzo ti ridi? 😒')
+        bot.reply_to(message, 'Ride bene chi ride ultimo')
     elif 'video' in msg:
-        bot.reply_to(message, 'Bravoh')
-    elif 'pippi' in msg:
-        bot.reply_to(message, 'Giovane... vai fuori!')
-    elif 'ricchion' in msg or 'gay' in msg:
+        bot.reply_to(message, 'Forse c\'è un nuovo video sul nostro canale youtube')
+    elif 'stego' in msg:
         bot.reply_to(message, 'Mi avete chiamato?')
     elif 'ciao' in msg:
-        bot.reply_to(message, 'Buongina')
-    elif 'colion' in msg or 'giuliv' in msg:
-        bot.reply_to(message, 'Ma tu mi sembri un po\' colione')
+        bot.reply_to(message, 'Buongiorno')
     elif 'aah' in msg:
         if len(msg.replace('a', '').replace('h', '')) == 0:
-            bot.reply_to(message, 'Cazzo ti esclami? 😒')
+            bot.reply_to(message, 'Aaaaaaaaaah')
     elif 'funziona' in msg:
-        bot.reply_to(message, 'E cettu che funziona')
+        bot.reply_to(message, 'E certo che funziona')
     elif 'good' in msg:
-        bot.reply_to(message, 'Maleducato che sei')
-    elif 'cittu' in msg:
-        opts = ["merda", "minchia", "incintu", "lezzu", "ttau", "pippi", "cittu", "shrek", "fessa"]
-        bot.reply_to(message, 'Cittu ' + random.choice(opts))
-    elif 'bacino' in msg:
-        bot.reply_to(message, 'In privato')
-    elif 'genius' in msg:
-        bot.reply_to(message, 'I\'m a fucking genius bitch! 😎')
+        bot.reply_to(message, 'Not bad')
+    elif 'NFT' in msg:
+        bot.reply_to(message, 'Quanti NFT hai?')
     elif 'eh' in msg and 'he' in msg:
         if len(msg.replace('e', '').replace('h', '')) == 0:
-            bot.reply_to(message, 'Figlio di babbano 😏')
-    elif 'say my name' in msg:
-        bot.reply_to(message, 'I\'m Heisenberg 🔫')
-    elif 'pene' in msg:
-        bot.reply_to(message, 'Cacacacacacacacaca')
+            bot.reply_to(message, 'Eheheh, bella questa')
     elif 'who' in msg and 'are' in msg and 'you' in msg:
-        bot.reply_to(message, 'I\'m the one who knocks 🚪')
-    elif 'bast' in msg:
-        bot.reply_to(message, 'st\nst\nst\nst\nst\nst')
-    elif 'lezz' in msg:
-        bot.reply_to(message, 'You are lezzo')
+        bot.reply_to(message, 'I\'m Stego')
+    elif 'crypto' in msg:
+        if random.uniform(0, 1) > 0.5:
+            bot.reply_to(message, 'Io sto holdando Algo')
+        else:
+            bot.reply_to(message, 'Mai sentito parlare di Algo')
     elif 'san' in msg:
-        bot.reply_to(message, 'San ' + message.from_user.first_name)
-    elif 'futtitene' in msg:
-        bot.reply_to(message, 'Tie te n\'hai FUTTIRE')
+        bot.reply_to(message, 'San Stego')
+    elif 'fregare' in msg:
+        bot.reply_to(message, 'Te ne devi fregare')
     elif 'matematica' in msg:
-        bot.reply_to(message, 'A matematica quiddha ete')
-    elif 'simo' in msg:
-        bot.reply_to(message, 'Va fanne sicchi')
+        bot.reply_to(message, 'La matematica purtroppo è quella')
+    elif 'adri' in msg:
+        bot.reply_to(message, 'ADRIANAAA')
     elif 'non è' in msg or 'non é' in msg:
         bot.reply_to(message, 'Quello che non è')
     elif 'sono tutti' in msg:
         bot.reply_to(message, 'Ma di diverse categorie')
     elif 'spieg' in msg:
-        bot.reply_to(message, 'Non fare mansplanning!')
-    elif 'non ci sono' in msg:
-        bot.reply_to(message, 'Succube.')
+        bot.reply_to(message, 'Te lo spiego io')
+    elif 'godo' in msg:
+        bot.reply_to(message, 'Penso che stiamo tutti godendo')
+    else:
+        bot.send_message(message.chat.id, 'Non mi assumo responsabilità')
 
 
 @app.route('/' + consts.BOT_TOKEN, methods=['POST'])
