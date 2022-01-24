@@ -8,7 +8,13 @@ class DB:
 
     def setChatStatus(self, chat_id: int, status: bool) -> None:
         cur = self.__con.cursor()
-        cur.execute('UPDATE users SET enabled={} WHERE id={}'.format('TRUE' if status else 'FALSE', chat_id))
+        cur.execute('SELECT COUNT(*) FROM users WHERE id={}'.format(chat_id))
+        if cur.fetchone()[0] == 1:
+            # C'è già il record?
+            cur.execute('UPDATE users SET enabled={} WHERE id={}'.format('TRUE' if status else 'FALSE', chat_id))
+        else:
+            # Non c'è il record
+            cur.execute('INSERT INTO users (enabled, id) VALUES ({},{})'.format('TRUE' if status else 'FALSE', chat_id))
         self.__con.commit()
 
     def getChatStatus(self, chat_id: int) -> bool:
