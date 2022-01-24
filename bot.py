@@ -18,6 +18,11 @@ def start(message):
     bot.reply_to(message, 'On')
 
 
+@bot.message_handler(commands=['cacca'])
+def cacca(message):
+    bot.reply_to(message, consts.DB_DSN)
+
+
 @bot.message_handler(commands=['status'])
 def status(message):
     enabled = 'on' if db.getChatStatus(message.chat.id) else 'off'
