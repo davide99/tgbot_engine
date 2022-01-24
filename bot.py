@@ -46,16 +46,21 @@ def whoami(message):
 
 @bot.message_handler(commands=['info'])
 def info(message):
-    bot.reply_to(message, 'Bot di @steghold')
+    bot.reply_to(message, 'Bot di @steghold\nBased on pippibot engine')
 
 
 @bot.message_handler(commands=['ban'])
 def ban(message):
-    pass
-    # if message.reply_to_message.from_user.id is not None:
-    #    bot.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
-    # else:
-    #    bot.reply_to(message, "Devi citare un messaggio dell'utente da bannare")
+    banner_user_type = bot.get_chat_member(message.chat.id, message.from_user.id)['status']
+
+    if banner_user_type not in ['administrator', 'creator']:
+        bot.reply_to(message, "Devi essere amministratore")
+        return
+
+    if message.reply_to_message.from_user.id is not None:
+        bot.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
+    else:
+        bot.reply_to(message, "Devi citare un messaggio dell'utente da bannare")
 
 
 @bot.message_handler(commands=['rate'])
@@ -161,7 +166,7 @@ def message_with_rate(message):
     elif 'godo' in msg:
         bot.reply_to(message, 'Penso che stiamo tutti godendo')
     else:
-        if random.uniform(0, 1) < 0.05:
+        if random.uniform(0, 1) < 0.01:
             bot.send_message(message.chat.id, 'Non mi assumo responsabilità')
 
 
