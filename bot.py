@@ -161,7 +161,8 @@ def message_with_rate(message):
     elif 'godo' in msg:
         bot.reply_to(message, 'Penso che stiamo tutti godendo')
     else:
-        bot.send_message(message.chat.id, 'Non mi assumo responsabilità')
+        if random.uniform(0, 1) < 0.05:
+            bot.send_message(message.chat.id, 'Non mi assumo responsabilità')
 
 
 @app.route('/' + consts.BOT_TOKEN, methods=['POST'])
