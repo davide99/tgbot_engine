@@ -1,6 +1,7 @@
-DB_DSN = 'postgres://wlcgeknhkjmcyk:fef1610eb67f568c83cdf99810142f6687a0a5ce1fc5d50e8ff615f99d6ccefa@ec2-3-214-35-188' \
-         '.compute-1.amazonaws.com:5432/da8t64cdii6shu'
+import os
 
-BOT_TOKEN = '218065682:AAEd9ULf1CWT2_6tc5RfLvaO4gAOEWJpN90'
+DB_DSN = os.environ['DATABASE_URL']
 
-APP_URL = 'https://pippibot.herokuapp.com/'
+BOT_TOKEN = '5222656934:AAEwBp638yg_TCPfxPtKdCG_rv7cz1g6Vy4'
+
+APP_URL = 'https://stegholdbot.herokuapp.com/'
