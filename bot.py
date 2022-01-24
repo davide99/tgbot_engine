@@ -92,7 +92,7 @@ def stego_dice(message):
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def message_with_rate(message):
-    if random.uniform(0, 1) < 0.05:
+    if random.uniform(0, 1) < 0.2:
         bot.send_chat_action(message.chat.id, "typing")
 
     if random.uniform(0, 1) > db.getRate(message.chat.id) or not db.getChatStatus(message.chat.id):
