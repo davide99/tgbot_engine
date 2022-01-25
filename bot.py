@@ -70,6 +70,10 @@ def ban(message):
 
 @bot.message_handler(commands=['rate'])
 def rate(message):
+    if not is_admin(message.chat.id, message.from_user.id):
+        bot.reply_to(message, "Devi essere amministratore")
+        return
+
     try:
         val = float(message.text.split()[1].replace(',', '.'))
 
