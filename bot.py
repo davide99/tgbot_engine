@@ -57,19 +57,12 @@ def is_admin(chat_id: int, user_id_: int) -> bool:
 
 @bot.message_handler(commands=['ban'])
 def ban(message):
-    print("Is admin: {}".format(is_admin(message.chat.id, message.from_user.id)))
     if not is_admin(message.chat.id, message.from_user.id):
-        print(2)
         bot.reply_to(message, "Devi essere amministratore")
-        print(3)
         return
-    else:
-        print(4)
-        bot.reply_to(message, "Sei amministratore")
-        print(5)
 
     if message.reply_to_message.from_user.id is not None:
-        bot.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
+        bot.ban_chat_member(message.chat.id, message.reply_to_message.from_user.id)
     else:
         bot.reply_to(message, "Devi citare un messaggio dell'utente da bannare")
 
