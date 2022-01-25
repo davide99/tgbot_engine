@@ -63,6 +63,7 @@ def ban(message):
 
     if message.reply_to_message.from_user.id is not None:
         bot.ban_chat_member(message.chat.id, message.reply_to_message.from_user.id)
+        bot.reply_to(message, "Utente bannato")
     else:
         bot.reply_to(message, "Devi citare un messaggio dell'utente da bannare")
 
