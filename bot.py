@@ -53,14 +53,13 @@ def info(message):
 
 @bot.message_handler(commands=['ban'])
 def ban(message):
-    bot.reply_to(message, message.__str__())
-    bot.reply_to(message, bot.get_chat_member(message.chat.id, message.from_user.id).__str__())
-
     banner_user_type = bot.get_chat_member(message.chat.id, message.from_user.id)['status']
 
     if banner_user_type not in ['administrator', 'creator']:
         bot.reply_to(message, "Devi essere amministratore")
         return
+    else:
+        bot.reply_to(message, "Sei amministratore")
 
     if message.reply_to_message.from_user.id is not None:
         bot.kick_chat_member(message.chat.id, message.reply_to_message.from_user.id)
