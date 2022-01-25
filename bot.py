@@ -1,10 +1,11 @@
 import os
-import telebot
 import random
+
+import telebot
 from flask import Flask, request
+
 import consts
 from db import DB
-import pprint
 
 bot = telebot.TeleBot(consts.BOT_TOKEN)
 app = Flask(__name__)
@@ -52,7 +53,7 @@ def info(message):
 
 @bot.message_handler(commands=['ban'])
 def ban(message):
-    bot.reply_to(message, pprint.pformat(message, indent=4))
+    bot.reply_to(message, message.__str__())
 
     banner_user_type = bot.get_chat_member(message.chat.id, message.from_user.id)['status']
 
