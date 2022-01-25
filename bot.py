@@ -61,6 +61,8 @@ def ban(message):
         bot.reply_to(message, "Devi essere amministratore")
         return
 
+    bot.reply_to(message, message.__str__())
+
     if message.reply_to_message.from_user.id is not None:
         bot.ban_chat_member(message.chat.id, message.reply_to_message.from_user.id)
     else:
