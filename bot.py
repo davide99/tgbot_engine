@@ -52,12 +52,11 @@ def info(message):
 
 
 def is_admin(chat_id: int, user_id_: int) -> bool:
-    return bot.get_chat_member(chat_id, user_id_)['status'] in ['administrator', 'creator']
+    return bot.get_chat_member(chat_id, user_id_).status in ['administrator', 'creator']
 
 
 @bot.message_handler(commands=['ban'])
 def ban(message):
-    print(1)
     print("Is admin: {}".format(is_admin(message.chat.id, message.from_user.id)))
     if not is_admin(message.chat.id, message.from_user.id):
         print(2)
