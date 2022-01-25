@@ -54,6 +54,7 @@ def info(message):
 @bot.message_handler(commands=['ban'])
 def ban(message):
     bot.reply_to(message, message.__str__())
+    bot.reply_to(message, bot.get_chat_member(message.chat.id, message.from_user.id).__str__())
 
     banner_user_type = bot.get_chat_member(message.chat.id, message.from_user.id)['status']
 
