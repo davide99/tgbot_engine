@@ -139,7 +139,11 @@ def message_with_rate(message):
     elif 'bot' in msg:
         bot.reply_to(message, 'Non sono un robot!')
     elif 'ah' in msg and 'ha' in msg:
-        bot.reply_to(message, 'Ride bene chi ride ultimo')
+        reply = random.choice([
+            'Ride bene chi ride ultimo', 'Ridi ridi', 'Ahahahhahaha', 'Menomale che sei felice',
+            'Non so se ridere o piangere'
+        ])
+        bot.reply_to(message, reply)
     elif 'video' in msg:
         bot.reply_to(message, 'Forse c\'è un nuovo video sul nostro canale youtube')
     elif 'stego' in msg:
