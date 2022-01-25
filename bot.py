@@ -4,6 +4,7 @@ import random
 from flask import Flask, request
 import consts
 from db import DB
+import pprint
 
 bot = telebot.TeleBot(consts.BOT_TOKEN)
 app = Flask(__name__)
@@ -51,6 +52,8 @@ def info(message):
 
 @bot.message_handler(commands=['ban'])
 def ban(message):
+    bot.reply_to(message, pprint.pformat(message, indent=4))
+
     banner_user_type = bot.get_chat_member(message.chat.id, message.from_user.id)['status']
 
     if banner_user_type not in ['administrator', 'creator']:
@@ -92,10 +95,14 @@ def stego_dice(message):
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def message_with_rate(message):
+    if not db.getChatStatus(message.chat.id):
+        # Esco se non abilitato
+        return
+
     if random.uniform(0, 1) < 0.2:
         bot.send_chat_action(message.chat.id, "typing")
 
-    if random.uniform(0, 1) > db.getRate(message.chat.id) or not db.getChatStatus(message.chat.id):
+    if random.uniform(0, 1) > db.getRate(message.chat.id):
         return
 
     msg = message.text.lower()
