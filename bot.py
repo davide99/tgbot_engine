@@ -58,6 +58,7 @@ def is_admin(chat_id: int, user_id_: int) -> bool:
 @bot.message_handler(commands=['ban'])
 def ban(message):
     print(1)
+    print("Is admin: {}".format(is_admin(message.chat.id, message.from_user.id)))
     if not is_admin(message.chat.id, message.from_user.id):
         print(2)
         bot.reply_to(message, "Devi essere amministratore")
