@@ -149,7 +149,10 @@ def message_with_rate(message):
     elif 'stego' in msg:
         bot.reply_to(message, 'Mi avete chiamato?')
     elif 'ciao' in msg:
-        bot.reply_to(message, 'Buongiorno')
+        reply = random.choice([
+            'Rooaaarr', 'I miei più cordiali saluti', 'Salve', 'Ciao ciao', 'Ciao a tutti'
+        ])
+        bot.reply_to(message, reply)
     elif 'aah' in msg:
         if len(msg.replace('a', '').replace('h', '')) == 0:
             bot.reply_to(message, 'Aaaaaaaaaah')
